@@ -1,10 +1,9 @@
 {
-  "name": "client",
+  "name": "ui",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "web": "react-native run-web",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
@@ -25,7 +24,6 @@
     "@react-native/typescript-config": "^0.73.1",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
-    "@types/suncalc": "^1.9.2",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
