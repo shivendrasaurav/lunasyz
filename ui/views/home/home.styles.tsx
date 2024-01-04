@@ -16,29 +16,38 @@ const homeStyles = StyleSheet.create({
   },
   weatherData: {
     width: '90%',
-    height: '70%',
     borderRadius: 12,
     padding: 12,
     backgroundColor: '#1a1a1a',
     flexDirection: 'row',
   },
   dateData: {
-    flex: 8,
+    flex: 7,
+    padding: 6,
   },
   dayValue: {
     color: '#fafafa',
     fontSize: 24,
+    textAlign: 'left',
   },
   dateValue: {
     color: '#fafafa',
     fontSize: 12,
+    textAlign: 'left',
   },
   tempData: {
-    flex: 2,
+    flex: 5,
+    padding: 6,
   },
   tempValue: {
     color: '#fafafa',
     fontSize: 24,
+    textAlign: 'right',
+  },
+  weatherType: {
+    color: '#fafafa',
+    fontSize: 12,
+    textAlign: 'right',
   },
   todaysMoon: {
     flex: 4,
