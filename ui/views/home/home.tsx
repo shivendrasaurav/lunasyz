@@ -74,6 +74,14 @@ const getLunarPhase = () => {
   return lunarPhaseKey[phase];
 };
 
+const getLunarPhaseAngle = (gps: { latitude?: any; longitude?: any; }) => {
+  const today = new Date();
+  const moonIllumination = SunCalc.getMoonIllumination(today);
+  const moonPosition = SunCalc.getMoonPosition(today, gps.latitude, gps.longitude);
+  const angle = moonIllumination.angle - moonPosition.parallacticAngle;
+  return Math.floor(angle * 100);
+};
+
 const getLunarPhaseName = () => {
   const today = new Date();
   const moonIllumination = SunCalc.getMoonIllumination(today);
@@ -233,8 +241,11 @@ const Home = () => {
         </View>
       </View>
       <View style={homeStyles.todaysMoon}>
-        <Text style={homeStyles.todaysMoonImg}>{getLunarPhase()}</Text>
+        <TouchableHighlight style={{transform: `rotate(${getLunarPhaseAngle(location)}deg)`}}>
+          <Text style={homeStyles.todaysMoonImg} id="lunarPhase">{getLunarPhase()}</Text>
+        </TouchableHighlight>
         <Text style={homeStyles.todaysMoonText}>{getLunarPhaseName()}</Text>
+        <Text style={homeStyles.dateValue}>{getDateValue()}</Text>
       </View>
       <View style={homeStyles.thumbs}>
         <Text style={homeStyles.weeklyMoonText}>{getWeeklyLunarPhases()[0].phase + '\n' + getWeeklyLunarPhases()[0].date}</Text>
