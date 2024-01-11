@@ -3,84 +3,34 @@
 import {StyleSheet} from 'react-native';
 
 const apodStyles = StyleSheet.create({
-  container: {
+  apodWrapper: {
+    flex: 1,
     height: '100%',
-    backgroundColor: '#0e0e0e',
-    flexDirection: 'column',
   },
-  weatherDataContainer: {
-    flex: 3,
-    backgroundColor: '#0e0e0e',
-    alignItems: 'center',
-    justifyContent: 'center',
+  apodBackground: {
+    height: '100%',
+    width: '100%',
   },
-  weatherData: {
-    width: '90%',
-    borderRadius: 12,
-    padding: 12,
-    backgroundColor: '#0e0e2e',
-    flexDirection: 'row',
+  apodInfo: {
+    flex: 8,
   },
-  dateData: {
-    flex: 7,
-    padding: 6,
+  apodTitle: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  dayValue: {
-    color: '#fafafa',
-    fontSize: 24,
-    textAlign: 'left',
-  },
-  dateValue: {
-    color: '#fafafa',
-    fontSize: 12,
-    textAlign: 'left',
-  },
-  tempData: {
-    flex: 5,
-    padding: 6,
-  },
-  tempValue: {
-    color: '#fafafa',
-    fontSize: 24,
-    textAlign: 'right',
-  },
-  weatherType: {
-    color: '#fafafa',
-    fontSize: 12,
-    textAlign: 'right',
-  },
-  todaysMoon: {
-    flex: 10,
-    backgroundColor: '#0e0e0e',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  todaysMoonImg:{
-    fontSize: 256,
-    color: '#fafafa',
+  apodTitleText:{
+    fontSize: 20,
     textAlign: 'center',
+    backgroundColor: '#fadafa',
+    paddingTop: 8,
+    color: '#0e0e0e',
   },
-  todaysMoonText:{
-    fontSize: 28,
-    color: '#fafafa',
-    textAlign: 'center',
-  },
-  thumbs: {
+  apodNavBar: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#0e0e0e',
+    backgroundColor: '#fadafa',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  phaseSlider: {
-    width: '80%',
-    height: 40,
-  },
-  monthlyMoonText:{
-    fontSize: 24,
-    color: '#acacac',
-    margin: 8,
-    textAlign: 'center',
   },
   navBar: {
     width: '80%',
