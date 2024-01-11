@@ -171,7 +171,7 @@ const requestLocationPermission = async () => {
   }
 };
 
-const Home = ({navigation}) => {
+const Home = () => {
 
   const [location, setLocation] = useState({'latitude': 20.23, 'longitude': -180.90});
   const [weather, setWeather] = useState({'current':{'temperature_2m': 'Location', 'weather_code': 100}, 'current_units':{'temperature_2m': ' '}});
@@ -282,20 +282,20 @@ const Home = ({navigation}) => {
         </TouchableHighlight>
         <Text style={homeStyles.todaysMoonText}>{lunarPhaseDataObject.phaseName}</Text>
         <Text style={homeStyles.dateValue}>{lunarPhaseDataObject.phaseDate}</Text>
-        <Slider value={15} thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={30} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={30} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
+        <Slider thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={30} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={30} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
       </View>
       <View style={homeStyles.thumbs}>
         <View style={homeStyles.navBar}>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}} style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
+          <TouchableHighlight style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
             <Text style={homeStyles.navBarButtonText}>Moon</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
+          <TouchableHighlight style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
             <Text style={homeStyles.navBarButtonText}>APOD</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
+          <TouchableHighlight style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
             <Text style={homeStyles.navBarButtonText}>Event</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
+          <TouchableHighlight style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
             <Text style={homeStyles.navBarButtonText}>Gear</Text>
           </TouchableHighlight>
         </View>
