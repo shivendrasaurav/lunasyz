@@ -286,17 +286,17 @@ const Home = ({navigation}) => {
       </View>
       <View style={homeStyles.thumbs}>
         <View style={homeStyles.navBar}>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}} style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-            <Text style={homeStyles.navBarButtonText}>Moon</Text>
+          <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}} style={homeStyles.navBarButton}>
+            <Text style={homeStyles.navBarButtonText}>🌕</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-            <Text style={homeStyles.navBarButtonText}>APOD</Text>
+          <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton}>
+            <Text style={homeStyles.navBarButtonText}>🔭</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-            <Text style={homeStyles.navBarButtonText}>Event</Text>
+          <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={homeStyles.navBarButton}>
+            <Text style={homeStyles.navBarButtonText}>🥂</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-            <Text style={homeStyles.navBarButtonText}>Gear</Text>
+          <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={homeStyles.navBarButton}>
+            <Text style={homeStyles.navBarButtonText}>⚙</Text>
           </TouchableHighlight>
         </View>
       </View>

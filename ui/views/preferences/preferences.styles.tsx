@@ -2,7 +2,7 @@
 
 import {StyleSheet} from 'react-native';
 
-const homeStyles = StyleSheet.create({
+const preferencesStyles = StyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: '#0e0e0e',
@@ -82,6 +82,13 @@ const homeStyles = StyleSheet.create({
     margin: 8,
     textAlign: 'center',
   },
+  preferencesNavBar: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#fadafa',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   navBar: {
     width: '80%',
     borderRadius: 36,
@@ -100,4 +107,4 @@ const homeStyles = StyleSheet.create({
   },
 });
 
-export default homeStyles;
+export default preferencesStyles;

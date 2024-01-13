@@ -1,13 +1,52 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, useState } from 'react';
-import {View, Text, ImageBackground, TouchableHighlight} from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
+import {View, Text, ImageBackground, TouchableHighlight, PermissionsAndroid, ScrollView, Platform, Alert} from 'react-native';
 import apodStyles from './apod.styles';
+import {DownloadDirectoryPath, downloadFile, getFSInfo, readDir} from 'react-native-fs';
+import FileViewer from 'react-native-file-viewer';
+
+const requestStoragePermission = async () => {
+  try {
+    if (Number(Platform.Version) >= 33) {
+      return true;
+    }
+    const granted = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    );
+    if (granted) {
+      console.log('You can use Storage');
+      return true;
+    } else {
+      console.log('Asking for permisson');
+      const result = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Storage Access',
+          message: 'LunaSyz requires storage access to download this image.',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (result === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use Storage');
+        return true;
+      } else {
+        console.log('You cannot use Storage');
+        return false;
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
 
 const APOD = ({navigation}) => {
 
-  const [apodData, setApodData] = useState({'copyright': '염범석 Yeom Beom-seok', 'date': '2024-01-11', 'explanation': "Named for a forgotten constellation, the Quadrantid Meteor Shower puts on an annual show for planet Earth's northern hemisphere skygazers. The shower's radiant on the sky lies within the old, astronomically obsolete constellation Quadrans Muralis. That location is not far from the Big Dipper asterism, known to some as the Plough, at the boundaries of the modern constellations Bootes and Draco. In fact the Big Dipper \"handle\" stars are near the upper right corner in this frame, with the meteor shower radiant just below. North star Polaris is toward the top left. Pointing back toward the radiant, Quadrantid meteors streak through the night in this skyscape from Jangsu, South Korea. The composite image was recorded in the hours around the shower's peak on January 4, 2024. A likely source of the dust stream that produces Quadrantid meteors was identified in 2003 as an asteroid.", 'hdurl': 'https://apod.nasa.gov/apod/image/2401/2024_quadrantids_240104_med_bsyeom.jpg', 'media_type': 'image', 'service_version': 'v1', 'title': 'Quadrantids of the North', 'url': 'https://apod.nasa.gov/apod/image/2401/2024_quadrantids_240104_med_bsyeom1024.jpg'});
+  const [apodData, setApodData] = useState({'copyright': '', 'date': '', 'explanation': '', 'hdurl': 'https://www.wpfaster.org/wp-content/uploads/2013/06/loading-gif.gif', 'media_type': '', 'service_version': '', 'title': '', 'url': ''});
+  const [showInfoToggle, setShowInfoToggle] = useState(false);
+  const [isDownloadStarted, setIsDownloadStarted] = useState(false);
 
   const getApodData = async () => {
     try {
@@ -20,36 +59,112 @@ const APOD = ({navigation}) => {
     }
   };
 
+  const showInfo = () =>{
+    if (showInfoToggle === false){
+      setShowInfoToggle(true);
+    }
+    else {
+      setShowInfoToggle(false);
+    }
+  };
+
+  const downloadImage = () =>{
+    setIsDownloadStarted(true);
+    const storagePermitted = requestStoragePermission();
+    storagePermitted.then(process =>{
+      if (process){
+
+        const url = apodData.hdurl;
+        const path = `${DownloadDirectoryPath}/${apodData.title}.jpeg`;
+        const resp = downloadFile({
+          fromUrl: url,
+          toFile: path,
+        });
+        resp.promise
+          .then(async res => {
+            if (res && res.statusCode === 200 && res.bytesWritten > 0) {
+              console.log('size:', res.bytesWritten);
+              await getFSInfo().then(response => {
+                const deviceSpace = response.freeSpace * 0.001;
+                if (deviceSpace > res.bytesWritten) {
+                  console.log('there is enough space');
+                  Alert.alert('Download Complete', 'Check for the image in Downloads folder in Files app');
+                } else {
+                  Alert.alert('Not enough space');
+                }
+              });
+            } else {
+              console.log(res);
+            }
+          })
+          .catch(error => console.log(error));
+
+      }
+    });
+  };
+
+  const getDirectoryList = async () => {
+    try {
+      const pathList = await readDir(DownloadDirectoryPath);
+      setDirectory(pathList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(()=>{
     getApodData();
+    getDirectoryList();
   }, []);
 
   return (
     <View style={apodStyles.apodWrapper}>
       <ImageBackground source={{uri: apodData.hdurl}} resizeMode="cover" style={apodStyles.apodBackground}>
-        <View style={apodStyles.apodInfo}>
-          <Text>
-            {apodData.explanation.toString() + '\n By ' + apodData.copyright.toString()}
-          </Text>
-        </View>
+        {
+          showInfoToggle ?
+          <View style={apodStyles.apodInfo}>
+            <ScrollView>
+              <Text style={apodStyles.apodInfoText}>
+                {apodData.explanation.toString() + '\n\nBy ' + apodData.copyright.toString()}
+              </Text>
+            </ScrollView>
+          </View>
+         :
+         <View style={apodStyles.apodInfo}>
+          <Text> </Text>
+         </View>
+        }
         <View style={apodStyles.apodTitle}>
           <Text style={apodStyles.apodTitleText}>
             {apodData.title.toString()}
           </Text>
+        <View style={apodStyles.apodTitleButtons}>
+          <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
+            <Text style={apodStyles.infoButtonText}>Toggle Info</Text>
+          </TouchableHighlight>
+          {
+            isDownloadStarted ?
+              <Text> </Text>
+            :
+              <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
+                <Text style={apodStyles.infoButtonText}>Save Image</Text>
+              </TouchableHighlight>
+          }
+        </View>
         </View>
         <View style={apodStyles.apodNavBar}>
           <View style={apodStyles.navBar}>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}} style={apodStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-              <Text style={apodStyles.navBarButtonText}>Moon</Text>
+            <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}} style={apodStyles.navBarButton}>
+              <Text style={apodStyles.navBarButtonText}>🌕</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('Home');}}  style={apodStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-              <Text style={apodStyles.navBarButtonText}>APOD</Text>
+            <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={apodStyles.navBarButton}>
+              <Text style={apodStyles.navBarButtonText}>🔭</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={apodStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-              <Text style={apodStyles.navBarButtonText}>Event</Text>
+            <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={apodStyles.navBarButton}>
+              <Text style={apodStyles.navBarButtonText}>🥂</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={apodStyles.navBarButton} onPress={()=>{console.log('lol');}}>
-              <Text style={apodStyles.navBarButtonText}>Gear</Text>
+            <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={apodStyles.navBarButton}>
+              <Text style={apodStyles.navBarButtonText}>⚙</Text>
             </TouchableHighlight>
           </View>
         </View>
