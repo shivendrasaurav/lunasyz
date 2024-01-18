@@ -1,0 +1,200 @@
+[
+  {
+    "Calendar Date": "2021 May 26",
+    "TD of Greatest Eclipse": "11:19:53",
+    "Eclipse Type": "Total",
+    "Saros Series": 121,
+    "Umbral Magnitude": 1.009,
+    "Eclipse Duration": "03h07m, 00h15m",
+    "Geographic Region of Eclipse Visibility": "e Asia, Australia, Pacific, Americas"
+  },
+  {
+    "Calendar Date": "2021 Nov 19",
+    "TD of Greatest Eclipse": "09:04:06",
+    "Eclipse Type": "Partial",
+    "Saros Series": 126,
+    "Umbral Magnitude": 0.974,
+    "Eclipse Duration": "03h28m",
+    "Geographic Region of Eclipse Visibility": "Americas, n Europe, e Asia, Australia, Pacific"
+  },
+  {
+    "Calendar Date": "2022 May 16",
+    "TD of Greatest Eclipse": "04:12:42",
+    "Eclipse Type": "Total",
+    "Saros Series": 131,
+    "Umbral Magnitude": 1.414,
+    "Eclipse Duration": "03h27m, 01h25m",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa"
+  },
+  {
+    "Calendar Date": "2022 Nov 08",
+    "TD of Greatest Eclipse": "11:00:22",
+    "Eclipse Type": "Total",
+    "Saros Series": 136,
+    "Umbral Magnitude": 1.359,
+    "Eclipse Duration": "03h40m, 01h25m",
+    "Geographic Region of Eclipse Visibility": "Asia, Australia, Pacific, Americas"
+  },
+  {
+    "Calendar Date": "2023 May 05",
+    "TD of Greatest Eclipse": "17:24:05",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 141,
+    "Umbral Magnitude": -0.046,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "Africa, Asia, Australia"
+  },
+  {
+    "Calendar Date": "2023 Oct 28",
+    "TD of Greatest Eclipse": "20:15:18",
+    "Eclipse Type": "Partial",
+    "Saros Series": 146,
+    "Umbral Magnitude": 0.122,
+    "Eclipse Duration": "01h17m",
+    "Geographic Region of Eclipse Visibility": "e Americas, Europe, Africa, Asia, Australia"
+  },
+  {
+    "Calendar Date": "2024 Mar 25",
+    "TD of Greatest Eclipse": "07:13:59",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 113,
+    "Umbral Magnitude": -0.132,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "Americas"
+  },
+  {
+    "Calendar Date": "2024 Sep 18",
+    "TD of Greatest Eclipse": "02:45:25",
+    "Eclipse Type": "Partial",
+    "Saros Series": 118,
+    "Umbral Magnitude": 0.085,
+    "Eclipse Duration": "01h03m",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa"
+  },
+  {
+    "Calendar Date": "2025 Mar 14",
+    "TD of Greatest Eclipse": "06:59:56",
+    "Eclipse Type": "Total",
+    "Saros Series": 123,
+    "Umbral Magnitude": 1.178,
+    "Eclipse Duration": "03h38m, 01h05m",
+    "Geographic Region of Eclipse Visibility": "Pacific, Americas, w Europe, w Africa"
+  },
+  {
+    "Calendar Date": "2025 Sep 07",
+    "TD of Greatest Eclipse": "18:12:58",
+    "Eclipse Type": "Total",
+    "Saros Series": 128,
+    "Umbral Magnitude": 1.362,
+    "Eclipse Duration": "03h29m, 01h22m",
+    "Geographic Region of Eclipse Visibility": "Europe, Africa, Asia, Australia"
+  },
+  {
+    "Calendar Date": "2026 Mar 03",
+    "TD of Greatest Eclipse": "11:34:52",
+    "Eclipse Type": "Total",
+    "Saros Series": 133,
+    "Umbral Magnitude": 1.151,
+    "Eclipse Duration": "03h27m, 00h58m",
+    "Geographic Region of Eclipse Visibility": "e Asia, Australia, Pacific, Americas"
+  },
+  {
+    "Calendar Date": "2026 Aug 28",
+    "TD of Greatest Eclipse": "04:14:04",
+    "Eclipse Type": "Partial",
+    "Saros Series": 138,
+    "Umbral Magnitude": 0.93,
+    "Eclipse Duration": "03h18m",
+    "Geographic Region of Eclipse Visibility": "e Pacific, Americas, Europe, Africa"
+  },
+  {
+    "Calendar Date": "2027 Feb 20",
+    "TD of Greatest Eclipse": "23:14:06",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 143,
+    "Umbral Magnitude": -0.057,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa, Asia"
+  },
+  {
+    "Calendar Date": "2027 Jul 18",
+    "TD of Greatest Eclipse": "16:04:09",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 110,
+    "Umbral Magnitude": -1.068,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "e Africa, Asia, Australia, Pacific"
+  },
+  {
+    "Calendar Date": "2027 Aug 17",
+    "TD of Greatest Eclipse": "07:14:59",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 148,
+    "Umbral Magnitude": -0.525,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "Pacific, Americas"
+  },
+  {
+    "Calendar Date": "2028 Jan 12",
+    "TD of Greatest Eclipse": "04:14:13",
+    "Eclipse Type": "Partial",
+    "Saros Series": 115,
+    "Umbral Magnitude": 0.066,
+    "Eclipse Duration": "00h56m",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa"
+  },
+  {
+    "Calendar Date": "2028 Jul 06",
+    "TD of Greatest Eclipse": "18:20:57",
+    "Eclipse Type": "Partial",
+    "Saros Series": 120,
+    "Umbral Magnitude": 0.389,
+    "Eclipse Duration": "02h21m",
+    "Geographic Region of Eclipse Visibility": "Europe, Africa, Asia, Australia"
+  },
+  {
+    "Calendar Date": "2028 Dec 31",
+    "TD of Greatest Eclipse": "16:53:15",
+    "Eclipse Type": "Total",
+    "Saros Series": 125,
+    "Umbral Magnitude": 1.246,
+    "Eclipse Duration": "03h29m, 01h11m",
+    "Geographic Region of Eclipse Visibility": "Europe, Africa, Asia, Australia, Pacific"
+  },
+  {
+    "Calendar Date": "2029 Jun 26",
+    "TD of Greatest Eclipse": "03:23:22",
+    "Eclipse Type": "Total",
+    "Saros Series": 130,
+    "Umbral Magnitude": 1.844,
+    "Eclipse Duration": "03h40m, 01h42m",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa, Mid East"
+  },
+  {
+    "Calendar Date": "2029 Dec 20",
+    "TD of Greatest Eclipse": "22:43:12",
+    "Eclipse Type": "Total",
+    "Saros Series": 135,
+    "Umbral Magnitude": 1.117,
+    "Eclipse Duration": "03h33m, 00h54m",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa, Asia"
+  },
+  {
+    "Calendar Date": "2030 Jun 15",
+    "TD of Greatest Eclipse": "18:34:34",
+    "Eclipse Type": "Partial",
+    "Saros Series": 140,
+    "Umbral Magnitude": 0.502,
+    "Eclipse Duration": "02h24m",
+    "Geographic Region of Eclipse Visibility": "Europe, Africa, Asia, Australia"
+  },
+  {
+    "Calendar Date": "2030 Dec 09",
+    "TD of Greatest Eclipse": "22:28:51",
+    "Eclipse Type": "Penumbral",
+    "Saros Series": 145,
+    "Umbral Magnitude": -0.163,
+    "Eclipse Duration": "-",
+    "Geographic Region of Eclipse Visibility": "Americas, Europe, Africa, Asia"
+  }
+]

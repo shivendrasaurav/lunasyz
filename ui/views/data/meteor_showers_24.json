@@ -1,0 +1,72 @@
+[
+  {
+    "Shower": "Quadrantids",
+    "Radiant (and its rough direction)": "Boötes (NE)",
+    "Morning of maximum": "Jan. 4",
+    "Peak zenithal hourly rate": "25-110",
+    "Parent comet or asteroid": "2003 EH1"
+  },
+  {
+    "Shower": "Lyrids*",
+    "Radiant (and its rough direction)": "Lyra (E)",
+    "Morning of maximum": "April 22",
+    "Peak zenithal hourly rate": "10-20+",
+    "Parent comet or asteroid": "Thatcher (1861 I)"
+  },
+  {
+    "Shower": "Eta Aquariids",
+    "Radiant (and its rough direction)": "Aquarius (E)",
+    "Morning of maximum": "May 5",
+    "Peak zenithal hourly rate": 6,
+    "Parent comet or asteroid": 50
+  },
+  {
+    "Shower": "Delta Aquariids",
+    "Radiant (and its rough direction)": "Aquarius (S)",
+    "Morning of maximum": "July 25 - Aug. 5",
+    "Peak zenithal hourly rate": 15,
+    "Parent comet or asteroid": "96P/Machholz"
+  },
+  {
+    "Shower": "Perseids",
+    "Radiant (and its rough direction)": "Perseus (NE)",
+    "Morning of maximum": "Aug. 12",
+    "Peak zenithal hourly rate": 100,
+    "Parent comet or asteroid": "109P/Swift-Tuttle"
+  },
+  {
+    "Shower": "Orionids*",
+    "Radiant (and its rough direction)": "Orion (SE)",
+    "Morning of maximum": "Oct. 21",
+    "Peak zenithal hourly rate": 22,
+    "Parent comet or asteroid": 20
+  },
+  {
+    "Shower": "Taurids",
+    "Radiant (and its rough direction)": "Taurus (overhead)",
+    "Morning of maximum": "Oct. - Nov.",
+    "Peak zenithal hourly rate": "5-10",
+    "Parent comet or asteroid": "2P/Encke"
+  },
+  {
+    "Shower": "Leonids*",
+    "Radiant (and its rough direction)": "Leo (E)",
+    "Morning of maximum": "Nov. 18",
+    "Peak zenithal hourly rate": "10-20",
+    "Parent comet or asteroid": "55P/Tempel-Tuttle"
+  },
+  {
+    "Shower": "Geminids*",
+    "Radiant (and its rough direction)": "Gemini (E)",
+    "Morning of maximum": "Dec. 13",
+    "Peak zenithal hourly rate": 14,
+    "Parent comet or asteroid": 120
+  },
+  {
+    "Shower": "Ursids",
+    "Radiant (and its rough direction)": "Ursa Minor (N)",
+    "Morning of maximum": "Dec. 22",
+    "Peak zenithal hourly rate": 10,
+    "Parent comet or asteroid": "8P/Tuttle"
+  }
+]
