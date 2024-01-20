@@ -44,7 +44,7 @@ const requestStoragePermission = async () => {
 
 const APOD = ({navigation}) => {
 
-  const [apodData, setApodData] = useState({'copyright': '', 'date': '', 'explanation': '', 'hdurl': 'https://www.wpfaster.org/wp-content/uploads/2013/06/loading-gif.gif', 'media_type': '', 'service_version': '', 'title': '', 'url': ''});
+  const [apodData, setApodData] = useState({'copyright': '', 'date': '', 'explanation': '', 'hdurl': 'https://cdn.dribbble.com/users/8424/screenshots/1036999/media/95ea84898041817671e6d4cd7fd65f13.gif', 'media_type': '', 'service_version': '', 'title': '', 'url': ''});
   const [showInfoToggle, setShowInfoToggle] = useState(false);
   const [isDownloadStarted, setIsDownloadStarted] = useState(false);
 
@@ -123,9 +123,9 @@ const APOD = ({navigation}) => {
         {
           showInfoToggle ?
           <View style={apodStyles.apodInfo}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={apodStyles.apodInfoTextWrapper}>
               <Text style={apodStyles.apodInfoText}>
-                {apodData.explanation.toString() + '\n\nBy ' + apodData.copyright.toString()}
+                {apodData.explanation.toString()}
               </Text>
             </ScrollView>
           </View>
@@ -136,7 +136,7 @@ const APOD = ({navigation}) => {
         }
         <View style={apodStyles.apodTitle}>
           <Text style={apodStyles.apodTitleText}>
-            {apodData.title.toString()}
+            {apodData.title.toString() + ' By ' + apodData.copyright.toString()}
           </Text>
         <View style={apodStyles.apodTitleButtons}>
           <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>

@@ -57,12 +57,17 @@ const homeStyles = StyleSheet.create({
   },
   todaysMoonImg:{
     fontSize: 256,
-    color: '#fafafa',
+    color: '#fadada',
     textAlign: 'center',
   },
   todaysMoonText:{
-    fontSize: 28,
-    color: '#fafafa',
+    fontSize: 22,
+    color: '#cacaca',
+    textAlign: 'center',
+  },
+  todaysMoonDate:{
+    fontSize: 14,
+    color: '#cacaca',
     textAlign: 'center',
   },
   todaysMoonTextHindi:{

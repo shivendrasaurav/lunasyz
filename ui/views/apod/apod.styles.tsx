@@ -15,6 +15,11 @@ const apodStyles = StyleSheet.create({
     flex: 6,
     justifyContent: 'flex-end',
   },
+  apodInfoTextWrapper: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
   apodInfoText: {
     margin: 12,
     padding: 8,

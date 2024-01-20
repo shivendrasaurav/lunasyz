@@ -231,7 +231,7 @@ const Home = ({navigation}) => {
 
   const [location, setLocation] = useState({'latitude': 20.23, 'longitude': -180.90});
   const [weather, setWeather] = useState({'current':{'temperature_2m': 'Location', 'weather_code': 100}, 'current_units':{'temperature_2m': ' '}});
-  const [lunarPhaseDataObject, setLunarPhaseDataObject] = useState({'phaseImg': '', 'phaseName': '', 'phaseAngle': 90, 'phaseDate': ''});
+  const [lunarPhaseDataObject, setLunarPhaseDataObject] = useState({'phaseImg': '', 'phaseName': '', 'phaseAngle': 90, 'phaseDate': '', 'phaseNameHindi': ''});
   const [timeNow, setTimeNow] = useState('');
 
   const getDateIndex = () => {
@@ -307,6 +307,7 @@ const Home = ({navigation}) => {
       phaseDate: monthlyLunarData[index].date,
       phaseName: monthlyLunarData[index].phaseName,
       phaseAngle: Math.abs(monthlyLunarData[index].phaseAngle) * 100,
+      phaseNameHindi: monthlyLunarData[index].phaseNameHindi,
     };
     setLunarPhaseDataObject(newLunarPhaseDataObject);
   };
@@ -345,12 +346,13 @@ const Home = ({navigation}) => {
         </View>
       </View>
       <View style={homeStyles.todaysMoon}>
+        <Text style={homeStyles.todaysMoonTextHindi}>{lunarPhaseDataObject.phaseNameHindi}</Text>
         <TouchableHighlight style={{transform: 'rotate(' + lunarPhaseDataObject.phaseAngle + 'deg)'}}>
           <Text style={homeStyles.todaysMoonImg}>{lunarPhaseDataObject.phaseImg}</Text>
         </TouchableHighlight>
         <Text style={homeStyles.todaysMoonText}>{lunarPhaseDataObject.phaseName}</Text>
-        <Text style={homeStyles.dateValue}>{lunarPhaseDataObject.phaseDate}</Text>
-        <Slider value={getDateIndex()} thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={30} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={30} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
+        <Text style={homeStyles.todaysMoonDate}>{lunarPhaseDataObject.phaseDate}</Text>
+        <Slider value={getDateIndex()} thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={29} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={29} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
       </View>
       <View style={homeStyles.thumbs}>
         <View style={homeStyles.navBar}>
