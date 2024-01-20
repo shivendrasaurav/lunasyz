@@ -65,6 +65,11 @@ const homeStyles = StyleSheet.create({
     color: '#fafafa',
     textAlign: 'center',
   },
+  todaysMoonTextHindi:{
+    fontSize: 24,
+    color: '#fafafa',
+    textAlign: 'center',
+  },
   thumbs: {
     flex: 1,
     flexDirection: 'row',

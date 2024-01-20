@@ -22,6 +22,13 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+const hindiPhaseCalender = ['अमावस्या', 'शुक्ल पक्ष - परिबा', 'शुक्ल पक्ष - दूज', 'शुक्ल पक्ष - तृतीया', 'शुक्ल पक्ष - चतुर्थी', 'शुक्ल पक्ष - पंचमी', 'शुक्ल पक्ष - षष्ठी', 'शुक्ल पक्ष - सप्तमी', 'शुक्ल पक्ष - अष्टमी', 'शुक्ल पक्ष - नवमी', 'शुक्ल पक्ष - दशमी', 'शुक्ल पक्ष-एकादशी', 'शुक्ल पक्ष - द्वादशी', 'शुक्ल पक्ष - त्रयोदशी', 'शुक्ल पक्ष - चतुर्दशी', 'पूर्णिमा', 'कृष्ण पक्ष - परिबा', 'कृष्ण पक्ष - दूज', 'कृष्ण पक्ष - तृतीया', 'कृष्ण पक्ष - चतुर्थी', 'कृष्ण पक्ष - पंचमी', 'कृष्ण पक्ष - षष्ठी', 'कृष्ण पक्ष - सप्तमी', 'कृष्ण पक्ष - अष्टमी', 'कृष्ण पक्ष - नवमी', 'कृष्ण पक्ष - दशमी', 'कृष्ण पक्ष-एकादशी', 'कृष्ण पक्ष - द्वादशी', 'कृष्ण पक्ष - त्रयोदशी', 'कृष्ण पक्ष - चतुर्दशी'];
+
+const newMoon2425 = ['Thu Jan 11 2024', 'Sat Feb 10 2024', 'Sun Mar 10 2024', 'Mon Apr 08 2024', 'Wed May 08 2024', 'Thu Jun 06 2024', 'Sat Jul 06 2024', 'Sun Aug 04 2024', 'Tue Sep 03 2024', 'Thu Oct 03 2024', 'Fri Nov 01 2024', 'Sun Dec 01 2024'];
+const qOne2425 = ['Thu Jan 18 2024', 'Fri Feb 16 2024', 'Sun Mar 17 2024', 'Tue Apr 16 2024', 'Wed May 15 2024', 'Fri Jun 14 2024', 'Sun Jul 14 2024', 'Mon Aug 12 2024', 'Wed Sep 11 2024', 'Fri Oct 11 2024', 'Sat Nov 09 2024', 'Sun Dec 08 2024'];
+const fullMoon2425 = ['Thu Jan 25 2024', 'Sat Feb 24 2024', 'Mon Mar 25 2024', 'Wed Apr 24 2024', 'Thu May 23 2024', 'Sat Jun 22 2024', 'Sun Jul 21 2024', 'Mon Aug 19 2024', 'Wed Sep 18 2024', 'Thu Oct 17 2024', 'Sat Nov 16 2024', 'Invalid Date'];
+const qThree2425 = ['Sat Feb 03 2024', 'Sun Mar 03 2024', 'Tue Apr 02 2024', 'Wed May 01 2024', 'Thu May 30 2024', 'Sat Jun 29 2024', 'Sun Jul 28 2024', 'Mon Aug 26 2024', 'Wed Sep 25 2024', 'Thu Oct 24 2024', 'Sat Nov 23 2024', 'Mon Dec 23 2024'];
+
 const wmoCode = {
   0: 'Clear sky',
   1: 'Mainly clear',
@@ -65,6 +72,7 @@ const getDateValue = () => {
   return today.toDateString();
 };
 
+/*
 const getDayValue = () => {
   let today = new Date();
   let val = today.getDay();
@@ -72,7 +80,6 @@ const getDayValue = () => {
   return days[val];
 };
 
-/*
 const getLunarPhase = () => {
   const today = new Date();
   const moonIllumination = SunCalc.getMoonIllumination(today);
@@ -94,10 +101,9 @@ const getLunarPhaseName = () => {
   const phase = getMoonPhase(moonIllumination.phase);
   return phase;
 };
-*/
 
 const getMoonPhase = (phase: number) => {
-  if (phase > 0 && phase <= 0.02) {
+  if ((phase > 0 && phase <= 0.02) || (phase > 0.98 && phase <= 1.02)) {
     return 'New Moon';
   } else if (phase > 0.02 && phase <= 0.23) {
     return 'Waxing Crescent';
@@ -111,32 +117,82 @@ const getMoonPhase = (phase: number) => {
     return 'Waning Gibbous';
   } else if (phase > 0.73 && phase <= 0.76) {
     return 'Last Quarter';
-  } else if (phase > 0.76 && phase <= 0.97) {
+  } else if (phase > 0.76 && phase <= 0.98) {
     return 'Waning Crescent';
-  } else if (phase > 0.97) {
+  }
+};
+*/
+
+const getMoonPhase = (compDate: number, index: number) => {
+  const newMoonDateNum = new Date(newMoon2425[index]);
+  const qOneDateNum = new Date(qOne2425[index]);
+  const fullMoonDateNum = new Date(fullMoon2425[index]);
+  const qThreeDateNum = new Date(qThree2425[index]);
+  const compDateNum = new Date(compDate);
+  if (compDateNum.toDateString() === newMoonDateNum.toDateString()){
+    return 'New Moon';
+  }
+  else if (compDateNum > newMoonDateNum && compDateNum < qOneDateNum){
+    return 'Waxing Crescent';
+  }
+  else if (compDateNum.toDateString() === qOneDateNum.toDateString()){
+    return 'First Quarter';
+  }
+  else if (compDateNum > qOneDateNum && compDateNum < fullMoonDateNum){
+    return 'Waxing Gibbous';
+  }
+  else if (compDateNum.toDateString() === fullMoonDateNum.toDateString()){
     return 'Full Moon';
+  }
+  else if (compDateNum > fullMoonDateNum && compDateNum < qThreeDateNum){
+    return 'Waning Gibbous';
+  }
+  else if (compDateNum.toDateString() === qThreeDateNum.toDateString()){
+    return 'Last Quarter';
+  }
+  else if (compDateNum > qThreeDateNum){
+    return 'Waning Crescent';
   }
 };
 
-const getDatesAroundToday = () => {
-  const today = new Date();
-  const datesAroundToday = [];
-
-  // Get three dates before today
-  for (let i = 15; i > 0; i--) {
-    const dateBefore = new Date(today);
-    dateBefore.setDate(today.getDate() - i);
-    datesAroundToday.push(`${dateBefore.toDateString()}`);
+const getThisLunarMonth = () => {
+  // Initialize lastNewMoon with today's date
+  let lastNewMoon = new Date(getDateValue());
+  let lastIndex = 0;
+  // Iterate through newMoon2425 to find the last new moon before today
+  for (let i = 0; i < newMoon2425.length; i++) {
+    let lastNewMoonDate = new Date(newMoon2425[i]);
+    if (lastNewMoonDate > lastNewMoon) {
+      lastNewMoon = new Date(newMoon2425[i - 1]); // Assign the previous new moon
+      lastIndex = i - 1;
+      break; // Exit the loop as we've found the last new moon
+    }
   }
 
-  // Get three dates after today
-  for (let i = 0; i <= 15; i++) {
-    const dateAfter = new Date(today);
-    dateAfter.setDate(today.getDate() + i);
-    datesAroundToday.push(`${dateAfter.toDateString()}`);
+  // Create an empty array to store the calendar
+  const calendar = [];
+
+  // Add the last new moon to the calendar
+  calendar.push({
+    date: lastNewMoon.toDateString(),
+    hindiPhaseName: hindiPhaseCalender[0],
+    englishPhaseName: 'New Moon',
+  });
+
+  // Iterate over the hindiPhaseNames array
+  for (let i = 1; i < hindiPhaseCalender.length; i++) {
+    // Calculate the date for the next phase
+    const date = new Date(lastNewMoon).setDate(lastNewMoon.getDate() + i);
+    const engPhName = getMoonPhase(date, lastIndex);
+    // Add the date and phase name to the calendar
+    calendar.push({
+      date: new Date(date).toDateString(),
+      hindiPhaseName: hindiPhaseCalender[i],
+      englishPhaseName: engPhName,
+    });
   }
 
-  return datesAroundToday;
+  return calendar;
 };
 
 const requestLocationPermission = async () => {
@@ -178,20 +234,30 @@ const Home = ({navigation}) => {
   const [lunarPhaseDataObject, setLunarPhaseDataObject] = useState({'phaseImg': '', 'phaseName': '', 'phaseAngle': 90, 'phaseDate': ''});
   const [timeNow, setTimeNow] = useState('');
 
+  const getDateIndex = () => {
+    const monthDates = getThisLunarMonth();
+    for (let i = 0; i < 30; i++){
+      let date = new Date(monthDates[i].date);
+      if (date.toLocaleDateString() === new Date().toLocaleDateString()){
+        return i;
+      }
+    }
+  };
+
   const getMonthlyLunarPhases = () =>{
-    const monthDates = getDatesAroundToday();
+    const monthDates = getThisLunarMonth();
     let lunarPhases = [];
-    for (let i = 0; i < 31; i++){
-      let date = new Date(monthDates[i]);
+    for (let i = 0; i < 30; i++){
+      let date = new Date(monthDates[i].date);
       let moonIllumination = SunCalc.getMoonIllumination(date);
-      let phase = getMoonPhase(moonIllumination.phase);
+      let phase = monthDates[i].englishPhaseName;
       let month = months[date.getMonth()];
       let dateNum = date.getDate();
       let year = date.getFullYear();
       const dateVal = month + ' ' + dateNum + ', ' + year;
       const moonPosition = SunCalc.getMoonPosition(date, location.latitude, location.longitude);
       const angle = moonIllumination.angle - moonPosition.parallacticAngle;
-      lunarPhases.push({'phaseImg': lunarPhaseKey[phase], 'date': dateVal, 'phaseName': phase, 'phaseAngle': angle});
+      lunarPhases.push({'phaseImg': lunarPhaseKey[phase], 'date': dateVal, 'phaseName': phase, 'phaseAngle': angle, 'phaseNameHindi': monthDates[i].hindiPhaseName});
     }
     return lunarPhases;
   };
@@ -234,11 +300,13 @@ const Home = ({navigation}) => {
   };
 
   const newLunarPhaseData = (index: number) =>{
+    const monthlyLunarData = getMonthlyLunarPhases();
+
     let newLunarPhaseDataObject = {
-      phaseImg: getMonthlyLunarPhases()[index].phaseImg,
-      phaseDate: getMonthlyLunarPhases()[index].date,
-      phaseName: getMonthlyLunarPhases()[index].phaseName,
-      phaseAngle: Math.abs(getMonthlyLunarPhases()[index].phaseAngle) * 100,
+      phaseImg: monthlyLunarData[index].phaseImg,
+      phaseDate: monthlyLunarData[index].date,
+      phaseName: monthlyLunarData[index].phaseName,
+      phaseAngle: Math.abs(monthlyLunarData[index].phaseAngle) * 100,
     };
     setLunarPhaseDataObject(newLunarPhaseDataObject);
   };
@@ -246,7 +314,7 @@ const Home = ({navigation}) => {
 
   const getTimeValue = () => {
     setInterval(()=>{
-      let now = new Date;
+      let now = new Date();
       let hrs = now.getHours();
       let min = now.getMinutes();
       let val = hrs.toString() + ':' + min.toString();
@@ -256,7 +324,7 @@ const Home = ({navigation}) => {
 
   useEffect(()=>{
     getLocation();
-    newLunarPhaseData(15);
+    newLunarPhaseData(getDateIndex());
     getTimeValue();
   }, []);
 
@@ -282,7 +350,7 @@ const Home = ({navigation}) => {
         </TouchableHighlight>
         <Text style={homeStyles.todaysMoonText}>{lunarPhaseDataObject.phaseName}</Text>
         <Text style={homeStyles.dateValue}>{lunarPhaseDataObject.phaseDate}</Text>
-        <Slider value={15} thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={30} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={30} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
+        <Slider value={getDateIndex()} thumbTintColor={'#fafafa'} lowerLimit={0} upperLimit={30} onValueChange={(val) => newLunarPhaseData(Math.floor(val))} style={homeStyles.phaseSlider} minimumValue={0} maximumValue={30} minimumTrackTintColor="#acacac" maximumTrackTintColor="#acacac"/>
       </View>
       <View style={homeStyles.thumbs}>
         <View style={homeStyles.navBar}>
