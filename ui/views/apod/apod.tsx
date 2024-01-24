@@ -125,7 +125,7 @@ const APOD = ({navigation}) => {
           <View style={apodStyles.apodInfo}>
             <ScrollView contentContainerStyle={apodStyles.apodInfoTextWrapper}>
               <Text style={apodStyles.apodInfoText}>
-                {apodData.explanation.toString()}
+                {apodData.explanation}
               </Text>
             </ScrollView>
           </View>
@@ -136,21 +136,21 @@ const APOD = ({navigation}) => {
         }
         <View style={apodStyles.apodTitle}>
           <Text style={apodStyles.apodTitleText}>
-            {apodData.title.toString() + ' By ' + apodData.copyright.toString()}
+            {apodData.title}{apodData.copyright === undefined ? '' : ` By ${apodData.copyright}`}
           </Text>
-        <View style={apodStyles.apodTitleButtons}>
-          <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
-            <Text style={apodStyles.infoButtonText}>Toggle Info</Text>
-          </TouchableHighlight>
-          {
-            isDownloadStarted ?
-              <Text> </Text>
-            :
-              <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
-                <Text style={apodStyles.infoButtonText}>Save Image</Text>
-              </TouchableHighlight>
-          }
-        </View>
+          <View style={apodStyles.apodTitleButtons}>
+            <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
+              <Text style={apodStyles.infoButtonText}>Toggle Info</Text>
+            </TouchableHighlight>
+            {
+              isDownloadStarted ?
+                <Text> </Text>
+              :
+                <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
+                  <Text style={apodStyles.infoButtonText}>Save Image</Text>
+                </TouchableHighlight>
+            }
+          </View>
         </View>
         <View style={apodStyles.apodNavBar}>
           <View style={apodStyles.navBar}>
@@ -160,11 +160,8 @@ const APOD = ({navigation}) => {
             <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={apodStyles.navBarButton}>
               <Text style={apodStyles.navBarButtonText}>🔭</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={apodStyles.navBarButton}>
+            <TouchableHighlight onPressIn={()=>{navigation.navigate('Events');}}  style={apodStyles.navBarButton}>
               <Text style={apodStyles.navBarButtonText}>🥂</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={apodStyles.navBarButton}>
-              <Text style={apodStyles.navBarButtonText}>⚙</Text>
             </TouchableHighlight>
           </View>
         </View>

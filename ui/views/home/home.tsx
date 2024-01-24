@@ -346,7 +346,6 @@ const Home = ({navigation}) => {
         </View>
       </View>
       <View style={homeStyles.todaysMoon}>
-        <Text style={homeStyles.todaysMoonTextHindi}>{lunarPhaseDataObject.phaseNameHindi}</Text>
         <TouchableHighlight style={{transform: 'rotate(' + lunarPhaseDataObject.phaseAngle + 'deg)'}}>
           <Text style={homeStyles.todaysMoonImg}>{lunarPhaseDataObject.phaseImg}</Text>
         </TouchableHighlight>
@@ -362,11 +361,8 @@ const Home = ({navigation}) => {
           <TouchableHighlight onPressIn={()=>{navigation.navigate('APOD');}}  style={homeStyles.navBarButton}>
             <Text style={homeStyles.navBarButtonText}>🔭</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={homeStyles.navBarButton}>
+          <TouchableHighlight onPressIn={()=>{navigation.navigate('Events');}}  style={homeStyles.navBarButton}>
             <Text style={homeStyles.navBarButtonText}>🥂</Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPressIn={()=>{navigation.navigate('Preferences');}}  style={homeStyles.navBarButton}>
-            <Text style={homeStyles.navBarButtonText}>⚙</Text>
           </TouchableHighlight>
         </View>
       </View>

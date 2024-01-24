@@ -9,7 +9,7 @@ const homeStyles = StyleSheet.create({
     flexDirection: 'column',
   },
   weatherDataContainer: {
-    flex: 3,
+    flex: 2,
     backgroundColor: '#0e0e0e',
     alignItems: 'center',
     justifyContent: 'center',
@@ -50,7 +50,7 @@ const homeStyles = StyleSheet.create({
     textAlign: 'right',
   },
   todaysMoon: {
-    flex: 10,
+    flex: 9,
     backgroundColor: '#0e0e0e',
     alignItems: 'center',
     justifyContent: 'center',

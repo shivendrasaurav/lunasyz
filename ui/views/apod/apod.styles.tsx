@@ -12,7 +12,7 @@ const apodStyles = StyleSheet.create({
     width: '100%',
   },
   apodInfo: {
-    flex: 6,
+    flex: 9,
     justifyContent: 'flex-end',
   },
   apodInfoTextWrapper: {
@@ -30,12 +30,12 @@ const apodStyles = StyleSheet.create({
     borderRadius: 8,
   },
   apodTitle: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-end',
     backgroundColor: '#fadafa',
   },
   apodTitleText:{
-    fontSize: 20,
+    fontSize: 16,
     padding: 8,
     marginLeft: 20,
     color: '#0e0e0e',
