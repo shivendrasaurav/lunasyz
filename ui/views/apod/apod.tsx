@@ -47,6 +47,7 @@ const APOD = ({navigation}) => {
   const [apodData, setApodData] = useState({'copyright': '', 'date': '', 'explanation': '', 'hdurl': 'https://cdn.dribbble.com/users/8424/screenshots/1036999/media/95ea84898041817671e6d4cd7fd65f13.gif', 'media_type': '', 'service_version': '', 'title': '', 'url': ''});
   const [showInfoToggle, setShowInfoToggle] = useState(false);
   const [isDownloadStarted, setIsDownloadStarted] = useState(false);
+  const [isDownloadCompleted, setIsDownloadCompleted] = useState(false);
 
   const getApodData = async () => {
     try {
@@ -96,6 +97,7 @@ const APOD = ({navigation}) => {
             } else {
               console.log(res);
             }
+            setIsDownloadCompleted(true);
           })
           .catch(error => console.log(error));
 
@@ -106,7 +108,7 @@ const APOD = ({navigation}) => {
   const getDirectoryList = async () => {
     try {
       const pathList = await readDir(DownloadDirectoryPath);
-      setDirectory(pathList);
+      console.log(pathList);
     } catch (error) {
       console.log(error);
     }
@@ -127,6 +129,9 @@ const APOD = ({navigation}) => {
               <Text style={apodStyles.apodInfoText}>
                 {apodData.explanation}
               </Text>
+              <Text style={apodStyles.apodTitleText}>
+                {'\n'}{apodData.title}{apodData.copyright === undefined ? '' : ` By ${apodData.copyright}`}
+              </Text>
             </ScrollView>
           </View>
          :
@@ -135,20 +140,31 @@ const APOD = ({navigation}) => {
          </View>
         }
         <View style={apodStyles.apodTitle}>
-          <Text style={apodStyles.apodTitleText}>
-            {apodData.title}{apodData.copyright === undefined ? '' : ` By ${apodData.copyright}`}
-          </Text>
           <View style={apodStyles.apodTitleButtons}>
             <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
-              <Text style={apodStyles.infoButtonText}>Toggle Info</Text>
+              <Text style={apodStyles.infoButtonText}>APOD Info</Text>
             </TouchableHighlight>
             {
-              isDownloadStarted ?
-                <Text> </Text>
+              apodData.copyright === undefined ?
+              <View>
+                {
+                  !isDownloadStarted ?
+                    <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
+                      <Text style={apodStyles.infoButtonText}>Save Image</Text>
+                    </TouchableHighlight>
+                    :
+                    <TouchableHighlight style={apodStyles.infoButton} disabled>
+                      {
+                        !isDownloadCompleted ?
+                          <Text style={apodStyles.infoButtonText}>Downloading...</Text>
+                        :
+                          <Text style={apodStyles.infoButtonText}>Downloaded</Text>
+                    }
+                    </TouchableHighlight>
+                }
+              </View>
               :
-                <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
-                  <Text style={apodStyles.infoButtonText}>Save Image</Text>
-                </TouchableHighlight>
+                null
             }
           </View>
         </View>

@@ -190,8 +190,8 @@ const Events = ({navigation}) => {
           week = [];
           cnt = 0;
         }
+
         let thisDay = new Date(dates.date);
-        console.log(today.toDateString() + ', ' + thisDay.toDateString());
         if (today.toDateString() === thisDay.toDateString()){
           dates.isToday = true;
         }
@@ -212,7 +212,7 @@ const Events = ({navigation}) => {
   return (
     <View style={eventStyles.eventWrapper}>
       <View style={eventStyles.calenderWrapper}>
-        <Text style={eventStyles.calenderTitle}>{'\n'}Lunar Month{'\n\n'}</Text>
+        <Text style={eventStyles.calenderTitle}>{'\n'}Lunar Cycle Events{'\n\n'}</Text>
         <View style={eventStyles.calenderRender}>
             {calendarData.map(
               dates => (
@@ -227,7 +227,7 @@ const Events = ({navigation}) => {
                             <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
                           </View>
                           :
-                          <View style={eventStyles.calenderDateWrapper}>
+                          <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapper}>
                             <Text style={eventStyles.calenderDate}>{calendarDate.date.getDate()}</Text>
                             <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
                           </View>
