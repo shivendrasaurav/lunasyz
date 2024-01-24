@@ -14,20 +14,24 @@ const apodStyles = StyleSheet.create({
   apodInfo: {
     flex: 10,
     justifyContent: 'flex-end',
+    padding: 12,
+    borderRadius: 8,
   },
   apodInfoTextWrapper: {
-    flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
-    margin: 12,
     padding: 8,
     backgroundColor: '#fadafa88',
+    borderRadius: 8,
+  },
+  apodScreenTitle: {
+    color: '#0e0e0e',
+    fontSize: 24,
   },
   apodInfoText: {
     color: '#0e0e0e',
     height: 'auto',
-    fontSize: 20,
-    borderRadius: 8,
+    fontSize: 18,
   },
   apodTitle: {
     flex: 1,
@@ -36,7 +40,7 @@ const apodStyles = StyleSheet.create({
     borderRadius: 8,
   },
   apodTitleText:{
-    fontSize: 20,
+    fontSize: 18,
     color: '#0e0e0e',
   },
   apodTitleButtons: {
@@ -63,7 +67,7 @@ const apodStyles = StyleSheet.create({
   apodNavBar: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#0e0e0e',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },

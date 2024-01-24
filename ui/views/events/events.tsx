@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, useState } from 'react';
-import {View, Text, PermissionsAndroid, TouchableHighlight} from 'react-native';
+import {View, Text, PermissionsAndroid, TouchableHighlight, Alert} from 'react-native';
 import SunCalc from 'suncalc';
 import Geolocation from 'react-native-geolocation-service';
 import eventStyles from './events.styles';
+import lunarEclipses from '../data/lunar_eclipses_2130.json';
+import solarEclipses from '../data/solar_eclipses_2130.json';
 
 const lunarPhaseKey = {
   'New Moon': '🌑',
@@ -139,6 +141,25 @@ const Events = ({navigation}) => {
 
   const [location, setLocation] = useState({'latitude': 20.23, 'longitude': -180.90});
 
+  const eventMakyr = (thisDate: Date) => {
+    let thisDateEvents: ({})[] = [];
+
+    lunarEclipses.forEach(eclipseDate => {
+      let dateValue = new Date(eclipseDate['Calendar Date']);
+      if (dateValue === thisDate){
+        thisDateEvents.push(eclipseDate);
+      }
+    });
+    solarEclipses.forEach(eclipseDate => {
+      let dateValue = new Date(eclipseDate['Calender Date']);
+      if (dateValue === thisDate){
+        thisDateEvents.push(eclipseDate);
+      }
+    });
+
+    return thisDateEvents;
+  };
+
   const getMonthlyLunarPhases = () =>{
     const monthDates = getThisLunarMonth();
     let lunarPhases = [];
@@ -147,13 +168,14 @@ const Events = ({navigation}) => {
       let isToday = false;
       let moonIllumination = SunCalc.getMoonIllumination(date);
       let phase = monthDates[i].englishPhaseName;
-      //let month = months[date.getMonth()];
-      //let dateNum = date.getDate();
-      //let year = date.getFullYear();
-      //const dateVal = month + ' ' + dateNum + ', ' + year;
+      let events = eventMakyr(date);
       const moonPosition = SunCalc.getMoonPosition(date, location.latitude, location.longitude);
       const angle = moonIllumination.angle - moonPosition.parallacticAngle;
-      lunarPhases.push({'isToday': isToday,'phaseImg': lunarPhaseKey[phase], 'date': date, 'phaseName': phase, 'phaseAngle': angle, 'phaseNameHindi': monthDates[i].hindiPhaseName});
+      if (i === 29) {
+        lunarPhases.push({'events': events,'isToday': isToday,'phaseImg': lunarPhaseKey['New Moon'], 'date': date, 'phaseName': phase, 'phaseAngle': angle, 'phaseNameHindi': monthDates[i].hindiPhaseName});
+      } else {
+        lunarPhases.push({'events': events,'isToday': isToday,'phaseImg': lunarPhaseKey[phase], 'date': date, 'phaseName': phase, 'phaseAngle': angle, 'phaseNameHindi': monthDates[i].hindiPhaseName});
+      }
     }
     return (lunarPhases);
   };
@@ -181,8 +203,8 @@ const Events = ({navigation}) => {
   const calendarDataMakyr = () => {
     const monthlyData = getMonthlyLunarPhases();
     let today = new Date();
-    let week: { isToday: boolean, phaseImg: any; date: Date; phaseName: string | undefined; phaseAngle: number; phaseNameHindi: string; }[] = [];
-    const ovr: { isToday: boolean; phaseImg: any; date: Date; phaseName: string | undefined; phaseAngle: number; phaseNameHindi: string; }[][] = [];
+    let week: { events: [], isToday: boolean, phaseImg: any; date: Date; phaseName: string | undefined; phaseAngle: number; phaseNameHindi: string; }[] = [];
+    const ovr: { events: [], isToday: boolean; phaseImg: any; date: Date; phaseName: string | undefined; phaseAngle: number; phaseNameHindi: string; }[][] = [];
     let cnt = 0;
     monthlyData.forEach(dates => {
         if (cnt === 6){
@@ -209,10 +231,16 @@ const Events = ({navigation}) => {
     getLocation();
   }, []);
 
+  const showEvents = (array: any[]) => {
+    if (array.length !== 0){
+      Alert.alert(array[0] + '\n' + array[1]);
+    }
+  };
+
   return (
     <View style={eventStyles.eventWrapper}>
       <View style={eventStyles.calenderWrapper}>
-        <Text style={eventStyles.calenderTitle}>{'\n'}Lunar Cycle Events{'\n\n'}</Text>
+        <Text style={eventStyles.calenderTitle}>{'\n'}Current Lunar Cycle{'\n\n'}</Text>
         <View style={eventStyles.calenderRender}>
             {calendarData.map(
               dates => (
@@ -222,15 +250,35 @@ const Events = ({navigation}) => {
                       <View style={eventStyles.calendarDateUpperWrapper}>
                         {
                           calendarDate.isToday === true ?
-                          <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapperToday}>
-                            <Text style={eventStyles.calenderDate}>{calendarDate.date.getDate()}</Text>
-                            <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
-                          </View>
+                          <TouchableHighlight onPress={()=>showEvents(calendarDate.events)}>
+                            {
+                              calendarDate.phaseImg === '🌗' || calendarDate.phaseImg === '🌕' || calendarDate.phaseImg === '🌓' || calendarDate.phaseImg === '🌑' ?
+                              <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapperToday}>
+                                <Text style={eventStyles.calenderDate}>{calendarDate.phaseImg}</Text>
+                                <Text style={eventStyles.calenderMonth}>{calendarDate.date.getDate() + ' ' + months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
+                              </View>
+                              :
+                              <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapperToday}>
+                                <Text style={eventStyles.calenderDate}>{calendarDate.date.getDate()}</Text>
+                                <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
+                              </View>
+                            }
+                          </TouchableHighlight>
                           :
-                          <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapper}>
-                            <Text style={eventStyles.calenderDate}>{calendarDate.date.getDate()}</Text>
-                            <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
-                          </View>
+                          <TouchableHighlight onPress={()=>showEvents(calendarDate.events)}>
+                            {
+                              calendarDate.phaseImg === '🌗' || calendarDate.phaseImg === '🌕' || calendarDate.phaseImg === '🌓' || calendarDate.phaseImg === '🌑' ?
+                              <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapper}>
+                                <Text style={eventStyles.calenderDate}>{calendarDate.phaseImg}</Text>
+                                <Text style={eventStyles.calenderMonth}>{calendarDate.date.getDate() + ' ' + months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
+                              </View>
+                              :
+                              <View key={calendarDate.date.toDateString()} style={eventStyles.calenderDateWrapper}>
+                                <Text style={eventStyles.calenderDate}>{calendarDate.date.getDate()}</Text>
+                                <Text style={eventStyles.calenderMonth}>{months[calendarDate.date.getMonth()].substring(0, 3)}</Text>
+                              </View>
+                            }
+                          </TouchableHighlight>
                         }
                       </View>
                     )

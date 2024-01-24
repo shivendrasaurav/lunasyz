@@ -126,11 +126,14 @@ const APOD = ({navigation}) => {
           showInfoToggle ?
           <View style={apodStyles.apodInfo}>
             <ScrollView contentContainerStyle={apodStyles.apodInfoTextWrapper}>
+              <Text style={apodStyles.apodScreenTitle}>
+                Astro Photo Of the Day{'\n'}
+              </Text>
               <Text style={apodStyles.apodInfoText}>
                 {apodData.explanation}
               </Text>
               <Text style={apodStyles.apodTitleText}>
-                {'\n'}{apodData.title}{apodData.copyright === undefined ? '' : ` By ${apodData.copyright}`}
+                {'\n'}{apodData.title}{apodData.copyright === undefined ? '' : ` By ${apodData.copyright}`}{'\n\n'}
               </Text>
             </ScrollView>
           </View>
@@ -140,13 +143,13 @@ const APOD = ({navigation}) => {
          </View>
         }
         <View style={apodStyles.apodTitle}>
-          <View style={apodStyles.apodTitleButtons}>
-            <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
-              <Text style={apodStyles.infoButtonText}>APOD Info</Text>
-            </TouchableHighlight>
+          <View>
             {
               apodData.copyright === undefined ?
-              <View>
+              <View style={apodStyles.apodTitleButtons}>
+                <TouchableHighlight style={apodStyles.infoButton} onPress={showInfo}>
+                  <Text style={apodStyles.infoButtonText}>APOD Info</Text>
+                </TouchableHighlight>
                 {
                   !isDownloadStarted ?
                     <TouchableHighlight style={apodStyles.infoButton} onPress={downloadImage}>
